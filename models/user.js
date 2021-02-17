@@ -7,12 +7,14 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     maxlength: 30,
+    default: 'Jacques Cousteau',
   },
   about: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 30,
+    default: 'Explorer',
   },
   email: {
     type: String,
@@ -31,6 +33,7 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
     required: true,
+    default: 'https://pictures.s3.yandex.net/resources/avatar_1604080799.jpg',
     validate: {
       validator: (v) => validator.isURL(v, {
         protocols: ['http', 'https', 'ftp'], require_tld: true, require_protocol: false, require_host: true, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false, disallow_auth: false,

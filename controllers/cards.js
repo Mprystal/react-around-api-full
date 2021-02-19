@@ -1,3 +1,4 @@
+const { isFunction } = require('util');
 const Card = require('../models/card.js');
 
 const getCards = (req, res) => {
@@ -17,6 +18,11 @@ const deleteCard = (req, res) => {
     if (!card) {
       return res.status(404).send({ message: 'No card with such id' });
     }
+    if (card.owner !== req.user._id) {
+      console.log('owner and id did not match', card.owner, req.user._id);
+      return res.status(404).send({ message: 'You do not have permission' });
+    }
+    console.log(' owner and card matched');
     return res.send({ data: card });
   })
     .catch(() => res.status(400).send({ message: 'Card cannot be deleted' }));

@@ -2,8 +2,21 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const getUsers = (req, res) => {
   User.find({}).then((users) => { res.status(200).send(users); }).catch(() => res.status(500).send({ message: 'Sever Error' }));
+};
+
+const getUser = (req, res) => {
+  const { email } = req.body;
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+    return res.status(200).send({ user });
+  })
+    .catch(() => res.status(400).send({ message: 'User cannot be found' }));
 };
 
 const getUsersById = (req, res) => {
@@ -56,7 +69,7 @@ const updateAvatar = (req, res) => {
 const login = (req, res) => {
   const { email, password } = req.body;
 
-  User.findOne({ email })
+  User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
       // user with the given password not found
@@ -72,7 +85,9 @@ const login = (req, res) => {
         });
     })
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        { expiresIn: '7d' });
 
       return res.send({ token });
     })
@@ -84,5 +99,5 @@ const login = (req, res) => {
 };
 
 module.exports = {
-  getUsers, getUsersById, createUser, updateProfile, updateAvatar, login,
+  getUsers, getUser, getUsersById, createUser, updateProfile, updateAvatar, login,
 };

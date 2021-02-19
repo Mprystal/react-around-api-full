@@ -1,8 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const {
+  createUser, login,
+} = require('./controllers/users');
+const auth = require('./middleware/auth');
 
 const { PORT = 3000 } = process.env;
 
@@ -19,16 +24,13 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 
 app.use(helmet());
 
-app.use((req, res, next) => {
-  req.user = {
-    _id: '5fea1af510a53f652485ecf7',
-  };
-
-  next();
-});
-
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.post('/signin', login);
+app.post('/signup', createUser);
+
+app.use(auth);
 app.use('/', userRouter);
 app.use('/', cardRouter);
 

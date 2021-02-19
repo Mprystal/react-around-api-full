@@ -1,4 +1,3 @@
-const { isFunction } = require('util');
 const Card = require('../models/card.js');
 
 const getCards = (req, res) => {

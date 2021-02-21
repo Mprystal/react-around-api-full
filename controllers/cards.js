@@ -13,18 +13,17 @@ const createCard = (req, res) => {
 };
 
 const deleteCard = (req, res) => {
-  Card.findByIdAndRemove(req.params.cardId).then((card) => {
+  Card.findById(req.params.cardId).then((card) => {
     if (!card) {
       return res.status(404).send({ message: 'No card with such id' });
     }
-    if (card.owner !== req.user._id) {
-      console.log('owner and id did not match', card.owner, req.user._id);
+    if (String(card.owner) !== req.user._id) {
       return res.status(404).send({ message: 'You do not have permission' });
     }
-    console.log(' owner and card matched');
-    return res.send({ data: card });
-  })
-    .catch(() => res.status(400).send({ message: 'Card cannot be deleted' }));
+    return Card.remove(card).then(() => {
+      res.send({ data: card });
+    });
+  }).catch(() => res.status(400).send({ message: 'Card cannot be deleted' }));
 };
 
 const likeCard = (req, res) => {

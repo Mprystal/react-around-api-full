@@ -1,32 +1,36 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
+const NotFoundError = require('../middleware/notFoundError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res) => {
-  User.find({}).then((users) => { res.status(200).send(users); }).catch(() => res.status(500).send({ message: 'Sever Error' }));
+  User.find({}).then((users) => {
+    res.status(200).send(users);
+  })
+    .catch(() => res.status(500).send({ message: 'Sever Error' }));
 };
 
-const getUser = (req, res) => {
+const getUser = (req, res, next) => {
   const { email } = req.body;
   User.findOne({ email }).then((user) => {
     if (!user) {
-      return res.status(404).send({ message: 'User not found' });
+      throw new NotFoundError('No user with matching email found');
     }
     return res.status(200).send({ user });
   })
-    .catch(() => res.status(400).send({ message: 'User cannot be found' }));
+    .catch(next);
 };
 
-const getUsersById = (req, res) => {
+const getUsersById = (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: 'User ID not found' });
+        throw new NotFoundError('No user with matching ID found');
       }
       return res.status(200).send(user);
-    }).catch(() => res.status(400).send({ message: 'User Id not valid' }));
+    }).catch(next);
 };
 
 const createUser = (req, res) => {
@@ -42,28 +46,28 @@ const createUser = (req, res) => {
     .catch(() => res.status(400).send({ message: 'User cannot be created' }));
 };
 
-const updateProfile = (req, res) => {
+const updateProfile = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .then((profile) => {
       if (!profile) {
-        return res.status(404).send({ message: 'Not valid profile id' });
+        throw new NotFoundError('Not valid profile ID');
       }
       return res.send({ data: profile });
     })
-    .catch(() => res.status(400).send({ message: 'User cannot be patched' }));
+    .catch(next);
 };
 
-const updateAvatar = (req, res) => {
+const updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .then((userAvatar) => {
       if (!userAvatar) {
-        return res.status(404).send({ message: 'Not valid profile id' });
+        throw new NotFoundError('Not valid profile ID');
       }
       return res.send({ data: userAvatar });
     })
-    .catch(() => res.status(400).send({ message: 'User cannot be patched' }));
+    .catch(next);
 };
 
 const login = (req, res) => {
@@ -72,7 +76,6 @@ const login = (req, res) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-      // user with the given password not found
         return Promise.reject(new Error('Incorrect password or email'));
       }
       return bcrypt.compare(password, user.password)

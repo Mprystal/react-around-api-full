@@ -9,6 +9,7 @@ const {
   createUser, login,
 } = require('./controllers/users');
 const auth = require('./middleware/auth');
+const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const { PORT = 3000 } = process.env;
 
@@ -27,6 +28,8 @@ app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(requestLogger);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -51,6 +54,8 @@ app.use('/', cardRouter);
 app.get('*', (req, res) => {
   res.status(404).send('{ "message": "Requested resource not found" }');
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 

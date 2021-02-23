@@ -1,0 +1,9 @@
+.header__paragraph {
+  color: white;
+}
+
+@media screen and (max-width: 320px) {
+  .header__paragraph {
+    display: none;
+  }
+}

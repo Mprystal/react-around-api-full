@@ -1,0 +1,27 @@
+@import url(./_disabled/popup__save_disabled.css);
+@import url(./_theme_small/popup__save_theme_small.css);
+
+.popup__save {
+  background-color: black;
+  color: white;
+  border: none;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 1.22;
+  margin-left: 36px;
+  margin-top: 18px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.popup__save:hover {
+  opacity: 0.6;
+  transition: ease-in 0.2s;
+}
+
+@media screen and (max-width: 480px) {
+  .popup__save {
+    width: 210px;
+  }
+}

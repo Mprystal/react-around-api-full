@@ -1,0 +1,14 @@
+.element__card-remove {
+  background: url(../../../images/GroupfullTrash.svg) no-repeat;
+  position: absolute;
+  top: 19px;
+  right: 16px;
+  width: 21px;
+  height: 18px;
+  border: none;
+}
+
+.element__card-remove:hover {
+  opacity: 0.6;
+  transition: ease-in 0.2s;
+}

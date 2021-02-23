@@ -1,0 +1,13 @@
+.profile__img-form {
+  background-color: black;
+  border: none;
+}
+
+.profile__img-form:focus {
+  outline: none;
+}
+
+.profile__img-form:hover {
+  background: url(../../../images/pen.svg) no-repeat center;
+  background-size: 26px;
+}

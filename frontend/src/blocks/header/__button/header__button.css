@@ -1,0 +1,18 @@
+.header__button {
+  background-color: transparent;
+  justify-self: center;
+  color: white;
+  border: none;
+  margin-left: 24px;
+}
+
+.header__button:hover {
+  color: rgba(255, 255, 255, 0.6);
+  transition: ease-in 0.2s;
+}
+
+@media screen and (max-width: 320px) {
+  .header__button {
+    margin-right: 30px;
+  }
+}

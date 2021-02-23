@@ -1,0 +1,14 @@
+.profile__img {
+  background: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.profile__img:hover {
+  opacity: 0.3;
+  transition: ease-in 0.2s;
+}

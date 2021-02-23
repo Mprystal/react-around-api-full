@@ -1,0 +1,23 @@
+@import url(./__logo/header__logo.css);
+@import url(./__login-container/header__login-container.css);
+@import url(./__button/header__button.css);
+@import url(./__link/header__link.css);
+@import url(./__paragraph/header__paragraph.css);
+
+.header {
+  max-width: 882px;
+  width: 100%;
+  margin: 45px auto 0 auto;
+  padding-bottom: 41px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    max-width: 100%;
+    margin-top: 28px;
+    padding-bottom: 32px;
+  }
+}

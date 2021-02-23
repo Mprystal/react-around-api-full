@@ -1,0 +1,37 @@
+.popup__container {
+  display: flex;
+  flex-direction: column;
+  width: 470px;
+  margin: auto;
+}
+
+@media screen and (max-width: 1280px) {
+  .popup__container {
+    right: 28%;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .popup__container {
+    right: 16%;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .popup__container {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popup__container {
+    right: 16%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .popup__container {
+    right: 0;
+    width: 280px;
+  }
+}

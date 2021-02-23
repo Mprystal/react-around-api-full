@@ -1,0 +1,10 @@
+.element__card-heading {
+  margin-left: 21px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.21;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 220px;
+}

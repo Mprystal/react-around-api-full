@@ -1,0 +1,22 @@
+.element__card-heart {
+  background: url(../../../images/Vectorheart.svg) no-repeat;
+  width: 21px;
+  height: 18px;
+  border: none;
+}
+
+.element__card-heart:focus {
+  outline: none;
+}
+
+.element__card-heart:hover {
+  opacity: 0.6;
+  transition: ease-in 0.2s;
+}
+
+.element__card-heart_active {
+  background: url(../../../images/VectorblackHeart.svg) no-repeat;
+  width: 21px;
+  height: 18px;
+  border: none;
+}

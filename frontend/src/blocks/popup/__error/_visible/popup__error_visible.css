@@ -1,0 +1,9 @@
+.popup__error_visible {
+  color: red;
+  font-size: 12px;
+  line-height: 1.25;
+  margin-bottom: 5px;
+  margin-left: 36px;
+  margin-right: 36px;
+  overflow-wrap: break-word;
+}

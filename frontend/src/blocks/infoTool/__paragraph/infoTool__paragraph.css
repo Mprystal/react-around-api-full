@@ -1,0 +1,15 @@
+.infoTool__paragraph {
+  margin-left: 36px;
+  margin-right: 36px;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 900;
+  text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+  .infoTool__paragraph {
+    margin: 0 18px;
+    font-size: 20px;
+  }
+}

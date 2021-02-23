@@ -1,0 +1,10 @@
+/* not working */
+.element__card-heart_active {
+  background: url(../../../images/VectorblackHeart.svg) no-repeat;
+  position: absolute;
+  bottom: 30px;
+  right: 18px;
+  width: 21px;
+  height: 18px;
+  border: none;
+}

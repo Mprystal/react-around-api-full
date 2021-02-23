@@ -1,0 +1,17 @@
+.header__link {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.header__link:hover {
+  color: rgba(255, 255, 255, 0.6);
+  transition: ease-in 0.2s;
+}
+
+@media screen and (max-width: 320px) {
+  .header__link {
+    margin-right: 30px;
+    font-size: 17px;
+  }
+}

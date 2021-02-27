@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -14,6 +15,7 @@ const { requestLogger, errorLogger } = require('./middleware/logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
+app.use(cors());
 
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
@@ -25,23 +27,6 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 });
 
 app.use(helmet());
-
-// an array of allowed domains
-const allowedCors = [
-  'http://api.aroundtheusa.students.nomoreparties.site',
-  'http://aroundtheusa.students.nomoreparties.site',
-  'localhost:3000',
-];
-
-app.use((req, res, next) => {
-  const { origin } = req.headers; // assign the corresponding header to the origin variable
-
-  if (allowedCors.includes(origin)) { // check that the origin value is among the allowed domains
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-
-  next();
-});
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));

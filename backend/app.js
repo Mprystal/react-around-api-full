@@ -17,7 +17,6 @@ const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cors({
   origin: 'http://aroundtheusa.students.nomoreparties.site',
-  preflightContinue: true,
   allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept'],
 }));
 

@@ -15,10 +15,7 @@ const { requestLogger, errorLogger } = require('./middleware/logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-app.use(cors({
-  origin: 'http://aroundtheusa.students.nomoreparties.site',
-  allowedHeaders: ['Origin', 'Content-Type', 'access-control-allow-origin'],
-}));
+app.use(cors());
 
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');

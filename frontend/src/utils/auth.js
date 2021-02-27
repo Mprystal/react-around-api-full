@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.aroundtheusa.students.nomoreparties.site'
+const BASE_URL = 'http://api.aroundtheusa.students.nomoreparties.site'
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`,{

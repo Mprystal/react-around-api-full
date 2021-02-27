@@ -118,7 +118,6 @@ const api = new Api({
   baseUrl: "http://api.aroundtheusa.students.nomoreparties.site",
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
   },
 });
 

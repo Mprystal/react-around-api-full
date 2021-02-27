@@ -5,7 +5,6 @@ export const register = (email, password) => {
         method: 'POST',
         headers: {         
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
             
         },
         body: JSON.stringify({email, password})
@@ -18,7 +17,6 @@ export const authorize = (email , password) => {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
            
         },
         body: JSON.stringify({email, password})

@@ -119,7 +119,6 @@ const api = new Api({
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
   },
 });
 

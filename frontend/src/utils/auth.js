@@ -6,7 +6,7 @@ export const register = (email, password) => {
         headers: {         
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+            
         },
         body: JSON.stringify({email, password})
     })
@@ -19,7 +19,7 @@ export const authorize = (email , password) => {
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+           
         },
         body: JSON.stringify({email, password})
     })

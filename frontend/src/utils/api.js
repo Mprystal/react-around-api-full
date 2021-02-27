@@ -119,7 +119,7 @@ const api = new Api({
   headers: {
     authorization: "df5252cc-ce9a-49bc-822a-e9a6c67f648c",
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "http://aroundtheusa.students.nomoreparties.site",
+    "Access-Control-Allow-Origin": "http://api.aroundtheusa.students.nomoreparties.site",
   },
 });
 

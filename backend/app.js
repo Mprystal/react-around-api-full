@@ -28,7 +28,6 @@ app.use(helmet());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://aroundtheusa.students.nomoreparties.site');
-  res.header('Access-Control-Allow-Origin', 'http://api.aroundtheusa.students.nomoreparties.site');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });

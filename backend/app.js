@@ -26,9 +26,20 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 
 app.use(helmet());
 
+// an array of allowed domains
+const allowedCors = [
+  'http://api.aroundtheusa.students.nomoreparties.site',
+  'http://aroundtheusa.students.nomoreparties.site',
+  'localhost:3000',
+];
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://aroundtheusa.students.nomoreparties.site');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  const { origin } = req.headers; // assign the corresponding header to the origin variable
+
+  if (allowedCors.includes(origin)) { // check that the origin value is among the allowed domains
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
   next();
 });
 

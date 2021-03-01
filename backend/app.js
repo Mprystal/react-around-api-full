@@ -37,8 +37,8 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 //   next();
 // });
 
-// app.use(cors());
-// app.options('*', cors())
+app.use(cors());
+app.options('*', cors())
 
 app.use(helmet());
 

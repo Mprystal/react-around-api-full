@@ -25,7 +25,7 @@ function Main(props){
 
             <div className="profile__info">
               <div className="profile__edit">
-                <h1 className="profile__name">{currentUser.name}</h1>
+                <h1 className="profile__name">{currentUser && currentUser.name}</h1>
                 <button
                   className="profile__edit-button"
                   onClick={props.onEditProfile}
@@ -33,7 +33,7 @@ function Main(props){
                   type="button"
                 ></button>
               </div>
-                 <p className="profile__occupation">{currentUser.about}</p>
+                 <p className="profile__occupation">{currentUser && currentUser.about}</p>
             </div>
           </div>
 

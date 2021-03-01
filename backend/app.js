@@ -17,6 +17,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cors({
   origin: 'http://aroundtheusa.students.nomoreparties.site',
+  allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
 }));
 
 const userRouter = require('./routes/users');

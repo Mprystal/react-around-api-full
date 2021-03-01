@@ -20,7 +20,7 @@ function Main(props){
               aria-label="Change profile picture button"
               type="button"
             >
-              <div className="profile__img" style={{ backgroundImage: `url(${currentUser.avatar})` }}></div>
+              <div className="profile__img" style={{ backgroundImage: `url(${currentUser && currentUser.avatar})` }}></div>
             </button>
 
             <div className="profile__info">

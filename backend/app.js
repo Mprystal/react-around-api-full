@@ -26,8 +26,8 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 });
 
 app.use(cors({
-  origin: '*',
-  allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
+  // origin: '*',
+  // allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
 }));
 
 app.use(helmet());

@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 });
 
 app.use(cors({
-  origin: 'http://aroundtheusa.students.nomoreparties.site',
+  origin: '*',
   allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
 }));
 

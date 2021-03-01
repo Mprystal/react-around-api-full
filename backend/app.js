@@ -15,10 +15,6 @@ const { requestLogger, errorLogger } = require('./middleware/logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-app.use(cors({
-  origin: 'http://aroundtheusa.students.nomoreparties.site',
-  allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
-}));
 
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
@@ -28,6 +24,11 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
   useCreateIndex: true,
   useFindAndModify: false,
 });
+
+app.use(cors({
+  origin: 'http://aroundtheusa.students.nomoreparties.site',
+  allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
+}));
 
 app.use(helmet());
 

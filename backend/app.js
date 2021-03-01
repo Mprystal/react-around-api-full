@@ -25,10 +25,12 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
   useFindAndModify: false,
 });
 
-app.use(cors({
-  // origin: '*',
-  // allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
-}));
+// app.use(cors({
+//   origin: '*',
+//   allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
+// }));
+
+app.use(cors());
 
 app.use(helmet());
 

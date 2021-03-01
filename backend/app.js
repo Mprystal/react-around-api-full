@@ -30,6 +30,11 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 //   allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
 // }));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.use(cors());
 
 app.use(helmet());

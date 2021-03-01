@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -37,8 +37,8 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 //   next();
 // });
 
-app.use(cors());
-app.options('*', cors())
+// app.use(cors());
+// app.options('*', cors())
 
 app.use(helmet());
 

@@ -13,7 +13,7 @@ const getUsers = (req, res) => {
 };
 
 const getUser = (req, res, next) => {
-  const { token } = req.body;
+  const { token } = req.get(Authorization);
   const decodedUser = jwt.verify(token, JWT_SECRET)
 
   User.findById(decodedUser).then((user) => {

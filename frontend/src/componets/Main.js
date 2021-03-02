@@ -52,6 +52,7 @@ function Main(props){
             <ul className="element">
               
               {currentUser && props.cards.map((card) => (
+                console.log(card)
                   <Card 
                   key={card._id} 
                   onCardClick={()=>{props.onImage(card)}} 

@@ -33,13 +33,13 @@ function App() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [image, setImage]= useState(x)
+  const [token, setToken] = useState(localStorage.getItem('jwt'))
 
   const history = useHistory();
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if(jwt){
-     getContent(jwt)
+    if(token){
+     getContent(token)
      .then((res)=> {
        if(res){
          setEmail(res.data.email)
@@ -61,7 +61,7 @@ function App() {
       },[])
 
   const handleSignOut = () =>{
-      localStorage.removeItem('jwt')
+      setToken(localStorage.removeItem('jwt'))
       setLoggedIn(false);
       history.push('/signin')
   }
@@ -69,35 +69,35 @@ function App() {
   function handleCardLike(card) {        
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
+    api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
     const newCards = cards.map((c) => c._id === card._id ? newCard : c);
     setCards(newCards);
     }).catch((e)=>console.log(e));
   } 
 
   function handleCardDelete(card){
-    api.removeCard(card._id).then(()=>{
+    api.removeCard(card._id,token).then(()=>{
         const cardsAfterDelete = cards.filter((c) => c._id !== card._id)
         setCards(cardsAfterDelete);
     }).catch((e) => console.log(e))
    }
 
   function handleUpdateUser({name , about}){ 
-    api.setUserInfo({name, about})
+    api.setUserInfo({name, about},token)
     .then(data => setCurrentUser(data))
     .then(()=>{closeAllPopups();})
     .catch(err => console.log(err))
   }
 
   function handleAddPlaceSubmit({name, link}){
-    api.addCard({name, link})
+    api.addCard({name, link},token)
     .then((newCard) =>setCards([newCard, ...cards]))
     .then(()=>{closeAllPopups();})
     .catch(err => console.log(err))
   }
 
   function handleUpdateAvatar({avatar}){
-      api.setUserAvatar(avatar)
+      api.setUserAvatar(avatar,token)
       .then(data => setCurrentUser(data))
       .then(()=>{closeAllPopups();})
       .catch(err => console.log(err))

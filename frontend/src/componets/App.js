@@ -41,7 +41,6 @@ function App() {
     if(token){
      getContent(token)
      .then((res)=> {
-       console.log(res, res.user.email)
        if(res){
         setEmail(res.user.email)
         setLoggedIn(true);
@@ -54,6 +53,7 @@ function App() {
   React.useEffect(() => {
     Promise.all([api.getUserInfo(token),api.getCardList(token)]).then(
       ([userInfo,cardListData]) => { 
+        console.log(userInfo, cardListData)
          setCurrentUser(userInfo)
          setCards(cardListData)
         }).catch((err) => {

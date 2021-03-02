@@ -39,6 +39,7 @@ function App() {
 
   React.useEffect(() => {
     if(token){
+      console.log(token)
      getContent(token)
      .then((res)=> {
        if(res){

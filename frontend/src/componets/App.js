@@ -44,8 +44,7 @@ function App() {
      .then((res)=> {
        console.log(res)
        if(res){
-         console.log(res)
-         setEmail(res.data.email)
+        setEmail(res.data.email)
         setLoggedIn(true);
         history.push('/')
        }

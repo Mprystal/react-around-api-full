@@ -53,9 +53,9 @@ function App() {
   React.useEffect(() => {
     Promise.all([api.getUserInfo(token),api.getCardList(token)]).then(
       ([userInfo,cardListData]) => { 
-        console.log(userInfo.user, cardListData[0])
+        console.log(userInfo.user, cardListData)
          setCurrentUser(userInfo.user)
-         setCards(cardListData[0])
+         setCards(cardListData)
         }).catch((err) => {
           console.log(`Error: ${err}`);
         })

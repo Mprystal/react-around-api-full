@@ -32,8 +32,8 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [image, setImage]= useState(x)
-  const [token, setToken] = useState(localStorage.getItem('jwt'))
+  const [image, setImage]= useState(x);
+  const [token, setToken] = useState(()=> localStorage.getItem('jwt'));
 
   const history = useHistory();
 
@@ -145,7 +145,7 @@ function App() {
               throw new Error('error!')
           }
           if(data.token){   
-              setToken(localStorage.setItem('jwt', data.token))
+              localStorage.setItem('jwt', data.token)
               setPassword(''); 
               handleLogin();
               history.push('/')

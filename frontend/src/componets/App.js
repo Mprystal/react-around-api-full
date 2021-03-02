@@ -51,7 +51,7 @@ function App() {
   }, [history])
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(),api.getCardList()]).then(
+    Promise.all([api.getUserInfo(token),api.getCardList(token)]).then(
       ([userInfo,cardListData]) => { 
          setCurrentUser(userInfo)
          setCards(cardListData)

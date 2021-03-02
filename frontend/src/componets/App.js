@@ -145,7 +145,7 @@ function App() {
               throw new Error('error!')
           }
           if(data.token){   
-              localStorage.setItem('jwt', data.token)
+              setToken(localStorage.setItem('jwt', data.token))
               setPassword(''); 
               handleLogin();
               history.push('/')

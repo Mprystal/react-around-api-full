@@ -15,6 +15,7 @@ const getUsers = (req, res) => {
 const getUser = (req, res, next) => {
   const { token } = req.body;
   const decodedUser = jwt.verify(token, JWT_SECRET)
+  console.log(token, decodedUser)
   User.findById({ decodedUser }).then((user) => {
     if (!user) {
       throw new NotFoundError('The provided token is invalid');

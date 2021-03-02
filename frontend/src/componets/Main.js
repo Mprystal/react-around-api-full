@@ -51,7 +51,8 @@ function Main(props){
         <section className="elements">
             <ul className="element">
               
-              {currentUser && props.cards.map((card) => (               
+              {currentUser && props.cards.map((card) => (   
+                consoel.log(card)            
                 <Card 
                   key={card._id} 
                   onCardClick={()=>{props.onImage(card)}} 

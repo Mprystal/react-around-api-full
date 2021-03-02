@@ -145,6 +145,7 @@ function App() {
               throw new Error('error!')
           }
           if(data.token){   
+              setToken(data.token)
               setPassword(''); 
               handleLogin();
               history.push('/')

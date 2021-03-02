@@ -58,7 +58,7 @@ function App() {
         }).catch((err) => {
           console.log(`Error: ${err}`);
         })
-      },[currentUser])
+      },[currentUser._id])
 
   const handleSignOut = () =>{
       localStorage.removeItem('jwt')

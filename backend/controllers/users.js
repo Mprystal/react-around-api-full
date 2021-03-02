@@ -13,7 +13,7 @@ const getUsers = (req, res) => {
 };
 
 const getUser = (req, res, next) => {
- User.findById(req.user_id).then((user) => {
+ User.findById(req.user._id).then((user) => {
     if (!user) {
       throw new NotFoundError('The provided token is invalid');
     }

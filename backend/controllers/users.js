@@ -22,7 +22,7 @@ const getUser = (req, res, next) => {
     }
     return res.status(200).send({ user });
   })
-    .catch(next);
+    .catch(console.log(req),next);
 };
 
 const getUsersById = (req, res, next) => {

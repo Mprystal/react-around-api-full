@@ -13,11 +13,11 @@ const getUsers = (req, res) => {
 };
 
 const getUser = (req, res, next) => {
-  console.log(req.body)
-  const { email } = req.body;
-  User.findOne({ email }).then((user) => {
+  const { token } = req.body;
+  const decodedUser = jwt.verify(token, JWT_SECRET)
+  User.findById({ decodedUser }).then((user) => {
     if (!user) {
-      throw new NotFoundError('No user with matching email found');
+      throw new NotFoundError('The provided token is invalid');
     }
     return res.status(200).send({ user });
   })

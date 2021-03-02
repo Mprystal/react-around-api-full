@@ -63,7 +63,8 @@ function App() {
       },[])
 
   const handleSignOut = () =>{
-      setToken(localStorage.removeItem('jwt'))
+      localStorage.removeItem('jwt')
+      setToken(()=> localStorage.getItem('jwt'))
       setLoggedIn(false);
       history.push('/signin')
   }
@@ -145,6 +146,7 @@ function App() {
               throw new Error('error!')
           }
           if(data.token){   
+              setToken(data.token)
               localStorage.setItem('jwt', data.token)
               setPassword(''); 
               handleLogin();

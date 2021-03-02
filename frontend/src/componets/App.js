@@ -39,7 +39,6 @@ function App() {
 
   React.useEffect(() => {
     if(token){
-      console.log(typeof(token))
      getContent(token)
      .then((res)=> {
        console.log(res)

@@ -51,19 +51,18 @@ function Main(props){
         <section className="elements">
             <ul className="element">
               
-              {currentUser && props.cards.map((card) => (
-                console.log(card.link)
-                  // <Card 
-                  // key={card._id} 
-                  // onCardClick={()=>{props.onImage(card)}} 
-                  // src={card.link} 
-                  // card={card} 
-                  // title={card.name} 
-                  // onCardLike={()=>{props.onCardLike(card)}} 
-                  // onCardDelete={()=>{props.onCardDelete(card)}} 
-                  // ownerId={card.owner._id} 
-                  // likes={card.likes.length}
-                  // />
+              {currentUser && props.cards.map((card) => (               
+                <Card 
+                  key={card._id} 
+                  onCardClick={()=>{props.onImage(card)}} 
+                  src={card.link} 
+                  card={card} 
+                  title={card.name} 
+                  onCardLike={()=>{props.onCardLike(card)}} 
+                  onCardDelete={()=>{props.onCardDelete(card)}} 
+                  ownerId={card.owner._id} 
+                  likes={card.likes.length}
+                  />
                   )
                   )}
             </ul>

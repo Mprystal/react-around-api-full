@@ -39,7 +39,7 @@ function App() {
 
   React.useEffect(() => {
     if(token){
-     getContent(token)
+     getContent(token.jwt)
      .then((res)=> {
        console.log(res)
        if(res){

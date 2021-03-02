@@ -53,7 +53,6 @@ function App() {
   React.useEffect(() => {
     Promise.all([api.getUserInfo(token),api.getCardList(token)]).then(
       ([userInfo,cardListData]) => { 
-        console.log(userInfo.user, cardListData)
          setCurrentUser(userInfo.user)
          setCards(cardListData)
         }).catch((err) => {
@@ -72,6 +71,7 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
+      console.log(newCard)
     const newCards = cards.map((c) => c._id === card._id ? newCard : c);
     setCards(newCards);
     }).catch((e)=>console.log(e));

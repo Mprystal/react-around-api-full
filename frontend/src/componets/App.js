@@ -39,9 +39,9 @@ function App() {
 
   React.useEffect(() => {
     if(token){
-      console.log(token)
      getContent(token)
      .then((res)=> {
+       console.log(res)
        if(res){
          setEmail(res.data.email)
         setLoggedIn(true);

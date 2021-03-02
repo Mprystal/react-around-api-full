@@ -41,9 +41,9 @@ function App() {
     if(token){
      getContent(token)
      .then((res)=> {
-       console.log(res)
+       console.log(res, res.user.email)
        if(res){
-        setEmail(res.data.email)
+        setEmail(res.user.email)
         setLoggedIn(true);
         history.push('/')
        }

@@ -39,7 +39,7 @@ const likeCard = (req, res, next) => {
     { new: true },
   ).then((likeId) => {
     if (likeId === null) {
-      throw new NotFoundError('No ucard with such ID');
+      throw new NotFoundError('No card with such ID');
     }
     return res.send();
   }).catch(next);

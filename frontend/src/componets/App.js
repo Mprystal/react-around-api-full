@@ -58,7 +58,7 @@ function App() {
         }).catch((err) => {
           console.log(`Error: ${err}`);
         })
-      },[])
+      },[userInfo])
 
   const handleSignOut = () =>{
       localStorage.removeItem('jwt')
@@ -71,11 +71,11 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     console.log(card)
 
-    // api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
-    //   console.log(newCard)
-    // const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-    // setCards(newCards);
-    // }).catch((e)=>console.log(e));
+    api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
+      console.log(newCard)
+    const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+    setCards(newCards);
+    }).catch((e)=>console.log(e));
   } 
 
   function handleCardDelete(card){

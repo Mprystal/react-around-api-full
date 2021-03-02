@@ -13,6 +13,7 @@ const getUsers = (req, res) => {
 };
 
 const getUser = (req, res, next) => {
+  console.log(req.body)
   const { email } = req.body;
   User.findOne({ email }).then((user) => {
     if (!user) {

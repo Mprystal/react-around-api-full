@@ -135,8 +135,8 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: "http://api.aroundtheusa.students.nomoreparties.site",
-  baseUrl: "http://localhost:3001",
+  baseUrl: "http://api.aroundtheusa.students.nomoreparties.site",
+  // baseUrl: "http://localhost:3001",
   // headers: {
   //   Authorization: `Bearer ${token}`
   //   "Content-Type": "application/json",

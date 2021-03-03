@@ -1,4 +1,5 @@
-const BASE_URL = 'http://api.aroundtheusa.students.nomoreparties.site'
+// const BASE_URL = 'http://api.aroundtheusa.students.nomoreparties.site'
+const BASE_URL =  "http://localhost:3001"
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`,{
@@ -25,9 +26,7 @@ export const authorize = (email , password) => {
         return response.json()
     }))
     .then((data)=>{
-        console.log(data)
         if(data.token){
-            console.log(data)
             return data
         } else {
             return

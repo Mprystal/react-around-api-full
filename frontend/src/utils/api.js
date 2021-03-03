@@ -34,7 +34,6 @@ class Api {
           )
     );
   }
-  //   getAppInfo() {} dont need but can 21mins in vid
 
   //   POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ name, link }, token) {
@@ -77,7 +76,7 @@ class Api {
 
   changeLikeCardStatus(cardId, isLiked, token) {
     const methodName = isLiked ? "DELETE" : "PUT";
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: methodName,
       headers: {
         Authorization: `Bearer ${token}`,
@@ -136,7 +135,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "http://api.aroundtheusa.students.nomoreparties.site",
+  // baseUrl: "http://api.aroundtheusa.students.nomoreparties.site",
+  baseUrl: "http://localhost:3001",
   // headers: {
   //   Authorization: `Bearer ${token}`
   //   "Content-Type": "application/json",

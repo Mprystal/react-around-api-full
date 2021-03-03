@@ -51,7 +51,7 @@ function Main(props){
         <section className="elements">
             <ul className="element">
               
-              {currentUser && props.cards.map((card) => (             
+              {currentUser && props.cards && (props.cards.map((card) => (           
                 <Card 
                   key={card._id} 
                   onCardClick={()=>{props.onImage(card)}} 
@@ -60,11 +60,11 @@ function Main(props){
                   title={card.name} 
                   onCardLike={()=>{props.onCardLike(card)}} 
                   onCardDelete={()=>{props.onCardDelete(card)}} 
-                  ownerId={card.owner._id} 
+                  ownerId={card.owner} 
                   likes={card.likes.length}
                   />
                   )
-                  )}
+                  ))}
             </ul>
         </section>      
       </main>

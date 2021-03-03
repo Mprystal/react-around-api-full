@@ -12,7 +12,7 @@ const {
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 const app = express();
 
@@ -24,18 +24,6 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
-// app.use(cors({
-//   origin: '*',
-//   allowedHeaders: ['Origin', 'Content-Type', 'Access-Control-Allow-Origin'],
-// }));
-
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', 'https://aroundtheusa.students.nomoreparties.site');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//   next();
-// });
 
 app.use(cors());
 app.options('*', cors())

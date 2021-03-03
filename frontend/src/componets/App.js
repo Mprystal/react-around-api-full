@@ -48,17 +48,23 @@ function App() {
        }
      })
     }
-  }, [history])
+  }, [history, token])
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(token),api.getCardList(token)]).then(
-      ([userInfo,cardListData]) => { 
+    api.getUserInfo(token).then((userInfo) => { 
          setCurrentUser(userInfo.user)
-         setCards(cardListData)
         }).catch((err) => {
           console.log(`Error: ${err}`);
         })
-      },[currentUser._id])
+      },[currentUser._id, token])
+
+  React.useEffect(() => {
+    api.getCardList(token).then((cardListData) => {
+      setCards(cardListData)
+    }).catch((err) => {
+      console.log(`Error: ${err}`);
+    })
+  },[cards, token])
 
   const handleSignOut = () =>{
       localStorage.removeItem('jwt')
@@ -69,12 +75,10 @@ function App() {
 
   function handleCardLike(card) {        
     const isLiked = card.likes.some(i => i === currentUser._id);
-    console.log(card)
 
     api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
-      console.log(newCard)
-    const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-    setCards(newCards);
+      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+      setCards(newCards);
     }).catch((e)=>console.log(e));
   } 
 

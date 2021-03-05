@@ -13,7 +13,7 @@ const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const NotFoundError = require('./middleware/notFoundError');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 const app = express();
 
@@ -29,14 +29,14 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 app.use(cors());
 app.options('*', cors());
 
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 100, // limit each IP to 100 requests per windowMs
+// });
 
-app.use(limiter);
+// app.use(limiter);
 
 app.use(helmet());
 
@@ -56,15 +56,17 @@ app.post('/signin', celebrate({
     password: Joi.string().required(),
   }),
 }), login);
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string(),
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), createUser);
+app.post('/signup',
+// celebrate({
+//   body: Joi.object().keys({
+//     name: Joi.string().min(2).max(30),
+//     about: Joi.string().min(2).max(30),
+//     avatar: Joi.string(),
+//     email: Joi.string().required().email(),
+//     password: Joi.string().required(),
+//   }),
+// }),
+createUser);
 
 app.use(auth);
 app.use('/', userRouter);

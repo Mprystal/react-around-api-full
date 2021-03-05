@@ -41,13 +41,16 @@ const createUser = (req, res) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then((user) => { res.status(200).send(user); })
-    .catch((err) => {
-      if (err.name === 'MongoError' && err.code === 11000) {
-        res
-          .status(409)
-          .send({ message: err.message });
-      }
+    .then((user) => {
+      res.status(201).send({ data: user.toJSON() });
+    })
+    .catch(() => {
+      // console.log(err)
+      // if ( err.code === 11000) {
+      //   res
+      //     .status(409)
+      //     .send({ message: err.message });
+      // }
       res.status(400).send({ message: 'User cannot be created' });
     });
 };

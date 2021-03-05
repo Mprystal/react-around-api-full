@@ -98,14 +98,26 @@ function App() {
 
   function handleAddPlaceSubmit({name, link}){
     api.addCard({name, link},token)
-    .then((newCard) =>setCards([newCard, ...cards]))
+    .then((newCard) => {
+      if(newCard === undefined){
+        alert('Not valid URL');
+        throw new Error('Not valid URL');
+      }
+      setCards([newCard, ...cards])
+    })
     .then(()=>{closeAllPopups();})
     .catch(err => console.log(err))
   }
 
   function handleUpdateAvatar({avatar}){
       api.setUserAvatar(avatar,token)
-      .then(data => setCurrentUser(data))
+      .then(data =>{ 
+        if(data === undefined){
+          alert('Not valid URL');
+          throw new Error('Not valid URL');
+        }
+        setCurrentUser(data)
+      })
       .then(()=>{closeAllPopups();})
       .catch(err => console.log(err))
   }

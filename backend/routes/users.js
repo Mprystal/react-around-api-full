@@ -25,7 +25,7 @@ router.patch('/users/me', celebrate({
 }), updateProfile);
 router.patch('/users/me/avatar', celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string(),
+    avatar: Joi.string().uri(),
   }),
 }), updateAvatar);
 

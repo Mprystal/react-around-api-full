@@ -1,18 +1,17 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { celebrate, Joi, errors } = require('celebrate');
+const rateLimit = require('express-rate-limit');
 const {
   createUser, login,
 } = require('./controllers/users');
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./middleware/logger');
-const NotFoundError = require('../middleware/notFoundError');
-const rateLimit = require("express-rate-limit");
+const NotFoundError = require('./middleware/notFoundError');
 
 const { PORT = 3000 } = process.env;
 
@@ -28,15 +27,14 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 });
 
 app.use(cors());
-app.options('*', cors())
+app.options('*', cors());
 
 app.set('trust proxy', 1);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 100, // limit each IP to 100 requests per windowMs
 });
-
 
 app.use(limiter);
 
@@ -72,7 +70,7 @@ app.use(auth);
 app.use('/', userRouter);
 app.use('/', cardRouter);
 
-app.get('*', (req, res) => {
+app.get('*', () => {
   throw new NotFoundError('Requested resource not found');
 });
 

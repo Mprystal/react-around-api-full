@@ -13,13 +13,13 @@ const getUsers = (req, res) => {
 };
 
 const getUser = (req, res, next) => {
- User.findById(req.user._id).then((user) => {
+  User.findById(req.user._id).then((user) => {
     if (!user) {
       throw new NotFoundError('The provided token is invalid');
     }
     return res.status(200).send({ user });
   })
-    .catch(console.log(req),next);
+    .catch(console.log(req), next);
 };
 
 const getUsersById = (req, res, next) => {
@@ -43,12 +43,12 @@ const createUser = (req, res) => {
     }))
     .then((user) => { res.status(200).send(user); })
     .catch((err) => {
-      if(err.name = MongoError && err.code = 11000){
+      if (err.name === 'MongoError' && err.code === 11000) {
         res
-        .status(40p)
-        .send({ message: err.message });
+          .status(409)
+          .send({ message: err.message });
       }
-      res.status(400).send({ message: 'User cannot be created' })
+      res.status(400).send({ message: 'User cannot be created' });
     });
 };
 

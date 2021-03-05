@@ -32,24 +32,6 @@ const deleteCard = (req, res, next) => {
   }).catch(next);
 };
 
-// const likeCard = (req, res, next) => updateLike(req, res, next, '$addToSet');
-// const unLikeCard = (req, res, next) => updateLike(req, res, next, '$pull');
-
-// const updateLike = (req, res, next, method) => {
-//   // const method === req.method === 'DELETE' ? '$pull' : '$addToSet'
-//   Card.findByIdAndUpdate(req.params.id, { [method]: { likes: req.user._id } })
-//     .then(card => res.status(200).send(card);)
-//     .catch((err) => {
-//       if (err.kind === 'ObjectId') {
-//         throw new NotFoundError('No card with such ID');
-//       }
-
-//       next(err);
-//     });
-// };
-
-
-
 const likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,

@@ -45,8 +45,7 @@ const createUser = (req, res) => {
       res.status(201).send({ data: user.toJSON() });
     })
     .catch((err) => {
-      console.log(err)
-      if ( err.code === 11000) {
+      if (err.code === 11000) {
         res
           .status(409)
           .send({ message: err.message });

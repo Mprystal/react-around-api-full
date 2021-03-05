@@ -12,6 +12,7 @@ const {
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const NotFoundError = require('../middleware/notFoundError');
+const rateLimit = require("express-rate-limit");
 
 const { PORT = 3000 } = process.env;
 
@@ -28,6 +29,16 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 
 app.use(cors());
 app.options('*', cors())
+
+app.set('trust proxy', 1);
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+
+
+app.use(limiter);
 
 app.use(helmet());
 

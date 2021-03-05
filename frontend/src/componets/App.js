@@ -170,7 +170,7 @@ function App() {
     }, 500);
     register(email, password)
     .then((res) => {
-        if( !res || res.status === 400){  
+        if( !res || res.status === 400 || res.status === 409){  
             throw new Error( 'Error!')
         } else if(res.status === 200 || 201) {
                 return res.json();

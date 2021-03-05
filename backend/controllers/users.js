@@ -42,7 +42,14 @@ const createUser = (req, res) => {
       name, about, avatar, email, password: hash,
     }))
     .then((user) => { res.status(200).send(user); })
-    .catch(() => res.status(400).send({ message: 'User cannot be created' }));
+    .catch((err) => {
+      if(err.name = MongoError && err.code = 11000){
+        res
+        .status(40p)
+        .send({ message: err.message });
+      }
+      res.status(400).send({ message: 'User cannot be created' })
+    });
 };
 
 const updateProfile = (req, res, next) => {

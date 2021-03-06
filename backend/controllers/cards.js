@@ -24,7 +24,7 @@ const deleteCard = (req, res, next) => {
       throw new NotFoundError('No card with such ID');
     }
     if (String(card.owner) !== req.user._id) {
-      res.status(403).send({ message: 'You do not have permission' })
+      res.status(403).send({ message: 'You do not have permission' });
     }
     return Card.remove(card).then(() => {
       res.send({ data: card });

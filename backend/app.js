@@ -13,7 +13,7 @@ const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const NotFoundError = require('./middleware/notFoundError');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
@@ -29,6 +29,7 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 app.use(cors());
 app.options('*', cors());
 
+// Still working on getting this up
 // app.set('trust proxy', 1);
 
 // const limiter = rateLimit({

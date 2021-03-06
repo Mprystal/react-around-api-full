@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { celebrate, Joi, errors } = require('celebrate');
-const rateLimit = require('express-rate-limit');
 const {
   createUser, login,
 } = require('./controllers/users');
@@ -35,25 +34,6 @@ app.use(function(req, res, next) {
 
 app.use(cors());
 app.options('*', cors());
-
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', 'https://around.nomoreparties.co');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//   next();
-// });
-
-// Still working on getting this up
-// app.set('trust proxy', 1);
-
-// const limiter = rateLimit({
-//   windowMs: 24 * 60 * 60 * 1000, // 24 hrs in milliseconds
-//   max: 100,
-//   message: 'You have exceeded the 100 requests in 24 hrs limit!',
-//   headers: true,
-// });
-
-// app.use(limiter);
 
 app.use(helmet());
 

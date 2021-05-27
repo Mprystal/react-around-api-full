@@ -5,8 +5,8 @@ The API of "Around the U.S." with authorization and registration handled by the 
 This repository contains the full API of "Around the U.S." project that features user authorization and user registration and handles cards and users. Please add to this readme:
 
 - a link to repository with the complete React application which uses this API;
-  https://aroundtheusa.students.nomoreparties.site/
+  https://practicumaroundfullapp.students.nomoreparties.site/
 - a link to the website that hosts your API.
-  https://api.aroundtheusa.students.nomoreparties.site/
+  https://api.practicumaroundfullapp.students.nomoreparties.site/
 
-IP = 20.55.112.8
+IP = 35.188.62.145
